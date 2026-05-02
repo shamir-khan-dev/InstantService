@@ -79,6 +79,34 @@ export interface CompleteBookingBody {
   review?: string;
 }
 
+// Auth Types
+export interface RegisterBody {
+  email: string;
+  password: string;
+  full_name: string;
+  phone_number?: string;
+  role: "client" | "contractor";
+  business_name?: string;
+  service_category?: string;
+  license_id?: string;
+}
+
+export interface LoginBody {
+  email: string;
+  password: string;
+}
+
+export interface AuthResponse {
+  status: string;
+  user: {
+    user_id: string;
+    email: string;
+    full_name: string;
+    role: string;
+    phone_number?: string;
+  };
+}
+
 // App state machine
 export type BookingStep =
   | "idle"

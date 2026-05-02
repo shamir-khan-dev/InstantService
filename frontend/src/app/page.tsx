@@ -11,10 +11,26 @@ import { TierSelectionScreen } from "@/components/screens/TierSelectionScreen";
 import { useBookingFlow } from "@/hooks/useBookingFlow";
 import type { Tab } from "@/components/ui/BottomNav";
 
+import { useAuth } from "@/context/AuthContext";
+import { AuthScreen } from "@/components/screens/AuthScreen";
+
 export default function Home() {
+  const { user, isLoading } = useAuth();
   const flow = useBookingFlow();
   const { state } = flow;
   const [activeTab, setActiveTab] = useState<Tab>("home");
+
+  if (isLoading) {
+    return (
+      <div className="min-h-dvh bg-bg flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <AuthScreen />;
+  }
 
   if (activeTab === "profile") {
     return <ProfileScreen onTabChange={setActiveTab} />;

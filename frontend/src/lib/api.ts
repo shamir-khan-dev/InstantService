@@ -8,6 +8,9 @@ import type {
   VoiceConfirmationBody,
   VoiceConfirmationResponse,
   CompleteBookingBody,
+  RegisterBody,
+  LoginBody,
+  AuthResponse,
 } from "./types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -64,4 +67,13 @@ export function completeBooking(body: CompleteBookingBody): Promise<void> {
 
 export function cancelBooking(body: { booking_id: string }): Promise<void> {
   return post<{ booking_id: string }, void>("/api/booking/cancel", body);
+}
+
+// Auth API
+export function register(body: RegisterBody): Promise<{ status: string; user_id: string }> {
+  return post<RegisterBody, { status: string; user_id: string }>("/api/auth/register", body);
+}
+
+export function login(body: LoginBody): Promise<AuthResponse> {
+  return post<LoginBody, AuthResponse>("/api/auth/login", body);
 }

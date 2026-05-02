@@ -16,6 +16,11 @@ class RegisterPayload(BaseModel):
     password: str
     full_name: str
     phone_number: Optional[str] = None
+    role: str = "client" # client or contractor
+    # Contractor specific fields
+    business_name: Optional[str] = None
+    service_category: Optional[str] = None
+    license_id: Optional[str] = None
 
 class LoginPayload(BaseModel):
     email: EmailStr
@@ -32,16 +37,34 @@ async def register(payload: RegisterPayload):
     hashed_password = pwd_context.hash(payload.password)
     user_id = f"user_{uuid.uuid4().hex[:8]}"
     
-    # 3. Save to Snowflake
+    # 3. Save to Snowflake (Main Users Table)
     query = """
-    INSERT INTO USERS (USER_ID, EMAIL, PASSWORD_HASH, FULL_NAME, PHONE_NUMBER)
-    VALUES (%s, %s, %s, %s, %s)
+    INSERT INTO USERS (USER_ID, EMAIL, PASSWORD_HASH, FULL_NAME, PHONE_NUMBER, ROLE)
+    VALUES (%s, %s, %s, %s, %s, %s)
     """
-    params = [user_id, payload.email, hashed_password, payload.full_name, payload.phone_number]
+    params = [user_id, payload.email, hashed_password, payload.full_name, payload.phone_number, payload.role]
     
     try:
         run_command(query, params)
-        return {"status": "success", "user_id": user_id, "message": "User created successfully"}
+        
+        # 4. If contractor, also create contractor profile
+        if payload.role == "contractor":
+            contractor_query = """
+            INSERT INTO CONTRACTORS (CONTRACTOR_ID, FULL_NAME, BUSINESS_NAME, LICENSE_ID, SERVICE_CATEGORY, ACTIVE_STATUS, TIER)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """
+            contractor_params = [
+                user_id, 
+                payload.full_name, 
+                payload.business_name or payload.full_name,
+                payload.license_id,
+                payload.service_category or "General Handyman",
+                "active",
+                "Basic"
+            ]
+            run_command(contractor_query, contractor_params)
+
+        return {"status": "success", "user_id": user_id, "message": f"{payload.role.capitalize()} created successfully"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Registration failed: {str(e)}")
 
@@ -63,6 +86,8 @@ async def login(payload: LoginPayload):
         "user": {
             "user_id": user["USER_ID"],
             "email": user["EMAIL"],
-            "full_name": user["FULL_NAME"]
+            "full_name": user["FULL_NAME"],
+            "role": user["ROLE"],
+            "phone_number": user["PHONE_NUMBER"]
         }
     }
