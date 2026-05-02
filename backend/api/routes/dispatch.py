@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException
 import uuid
-from ...models.request_models import DispatchPayload
-from ...models.response_models import DispatchResponse
-from ...models.domain_models import Contractor, Tier, Booking, BookingStatus, Urgency
-from ...services.database import DatabaseService
-from ...services.matching_service import MatchingService
+from models.request_models import DispatchPayload
+from models.response_models import DispatchResponse
+from models.domain_models import Contractor, Tier, Booking, BookingStatus, Urgency
+from services.database import DatabaseService
+from services.matching_service import MatchingService
 
 router = APIRouter()
 

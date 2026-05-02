@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
-from ...models.request_models import SelectTierPayload
-from ...models.response_models import SelectTierResponse
-from ...services.database import DatabaseService
+from models.request_models import SelectTierPayload
+from models.response_models import SelectTierResponse
+from services.database import DatabaseService
 
 router = APIRouter()
 

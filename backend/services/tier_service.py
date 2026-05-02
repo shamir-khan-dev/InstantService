@@ -1,4 +1,4 @@
-from ..models.domain_models import Tier
+from models.domain_models import Tier
 from typing import List
 
 class TierService:

@@ -3,8 +3,8 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional
 import uuid
 from passlib.context import CryptContext
-from ...services.database import DatabaseService
-from ...services.snowflake_service import run_command, run_query
+from services.database import DatabaseService
+from services.snowflake_service import run_command, run_query
 
 router = APIRouter()
 

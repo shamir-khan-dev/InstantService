@@ -1,4 +1,4 @@
-from ..models.domain_models import Booking, BookingStatus, Contractor, Tier
+from models.domain_models import Booking, BookingStatus, Contractor, Tier
 from typing import Optional
 
 class BookingService:

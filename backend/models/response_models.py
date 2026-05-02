@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
-from .domain_models import Tier, Urgency, Contractor, Booking
+from models.domain_models import Tier, Urgency, Contractor, Booking
 
 class AnalyzeRequestResponse(BaseModel):
     request_id: str

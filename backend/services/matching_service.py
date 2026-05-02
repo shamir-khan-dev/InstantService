@@ -1,6 +1,6 @@
 from typing import List, Optional
-from ..models.domain_models import Contractor, Tier, Urgency
-from .tier_service import TierService
+from models.domain_models import Contractor, Tier, Urgency
+from services.tier_service import TierService
 
 class MatchingService:
     

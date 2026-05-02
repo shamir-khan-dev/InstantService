@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .api.routes.health import router as health_router
-from .api.routes.contractor import router as contractor_router
-from .api.routes.analyze_request import router as analyze_router
-from .api.routes.tier import router as tier_router
-from .api.routes.dispatch import router as dispatch_router
-from .api.routes.booking import router as booking_router
-from .api.routes.voice import router as voice_router
-from .api.routes.auth import router as auth_router
+from api.routes.health import router as health_router
+from api.routes.contractor import router as contractor_router
+from api.routes.analyze_request import router as analyze_router
+from api.routes.tier import router as tier_router
+from api.routes.dispatch import router as dispatch_router
+from api.routes.booking import router as booking_router
+from api.routes.voice import router as voice_router
+from api.routes.auth import router as auth_router
 
 # Initialize FastAPI app
 app = FastAPI(

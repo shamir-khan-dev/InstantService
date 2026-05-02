@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from ...services.snowflake_service import run_query, run_command
+from services.snowflake_service import run_query, run_command
 
 router = APIRouter(prefix="/api/contractor", tags=["contractor"])
 

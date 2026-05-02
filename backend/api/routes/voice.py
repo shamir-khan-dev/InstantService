@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
-from ...models.request_models import VoiceConfirmationPayload
-from ...models.response_models import VoiceConfirmationResponse
-from ...services.elevenlabs_service import generate_voice_confirmation, build_confirmation_text
+from models.request_models import VoiceConfirmationPayload
+from models.response_models import VoiceConfirmationResponse
+from services.elevenlabs_service import generate_voice_confirmation, build_confirmation_text
 
 router = APIRouter()
 

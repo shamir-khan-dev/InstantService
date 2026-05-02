@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
-from .domain_models import Tier
+from models.domain_models import Tier
 
 class AnalyzeRequestPayload(BaseModel):
     client_id: str

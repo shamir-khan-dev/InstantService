@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException
 import uuid
-from ...models.request_models import AnalyzeRequestPayload
-from ...models.response_models import AnalyzeRequestResponse
-from ...services.gemini_service import analyze_service_request
-from ...services.database import DatabaseService
+from models.request_models import AnalyzeRequestPayload
+from models.response_models import AnalyzeRequestResponse
+from services.gemini_service import analyze_service_request
+from services.database import DatabaseService
 
 router = APIRouter()
 

@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional
-from ...models.domain_models import BookingStatus
-from ...services.database import DatabaseService
+from models.domain_models import BookingStatus
+from services.database import DatabaseService
 
 router = APIRouter()
 

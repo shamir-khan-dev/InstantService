@@ -1,9 +1,9 @@
 import snowflake.connector
-from ..config.settings import settings
+from config.settings import settings
 from typing import List, Optional
-from ..models.domain_models import Contractor, Booking, Tier, BookingStatus
-
-from ..services.snowflake_service import run_query, run_command
+from models.domain_models import Contractor, Booking, Tier, BookingStatus
+import uuid
+from services.snowflake_service import run_query, run_command
 
 class DatabaseService:
     @staticmethod
