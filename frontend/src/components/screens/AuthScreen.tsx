@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { register as apiRegister, login as apiLogin } from "@/lib/api";
-import { LogIn, UserPlus, Shield, Tool, ArrowRight, Loader2, Mail, Lock, User, Phone, Briefcase, FileText } from "lucide-react";
+import { LogIn, UserPlus, Shield, Wrench, ArrowRight, Loader2, Mail, Lock, User, Phone, Briefcase, FileText } from "lucide-react";
 
 type AuthMode = "login" | "register";
 type UserRole = "client" | "contractor";
@@ -117,7 +117,7 @@ export function AuthScreen() {
                 }`}
               >
                 <div className={`p-2 rounded-lg ${role === "contractor" ? "bg-accent text-white" : "bg-bg text-muted"}`}>
-                  <Tool className="w-5 h-5" />
+                  <Wrench className="w-5 h-5" />
                 </div>
                 <span className="text-xs font-bold uppercase tracking-wider">Become Pro</span>
               </button>
