@@ -47,7 +47,7 @@ async def register(payload: RegisterPayload):
     try:
         run_command(query, params)
         
-        # 4. If contractor, also create contractor profile
+        # 4. Role-specific profile creation
         if payload.role == "contractor":
             contractor_query = """
             INSERT INTO CONTRACTORS (CONTRACTOR_ID, FULL_NAME, BUSINESS_NAME, LICENSE_ID, SERVICE_CATEGORY, ACTIVE_STATUS, TIER)
@@ -63,6 +63,14 @@ async def register(payload: RegisterPayload):
                 "Basic"
             ]
             run_command(contractor_query, contractor_params)
+        else:
+            # Insert into CLIENTS table for regular users
+            client_query = """
+            INSERT INTO CLIENTS (CLIENT_ID, FULL_NAME, EMAIL, PHONE)
+            VALUES (%s, %s, %s, %s)
+            """
+            client_params = [user_id, payload.full_name, payload.email, payload.phone_number]
+            run_command(client_query, client_params)
 
         return {"status": "success", "user_id": user_id, "message": f"{payload.role.capitalize()} created successfully"}
     except Exception as e:
