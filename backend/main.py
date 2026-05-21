@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from config.settings import settings
 from api.routes.health import router as health_router
 from api.routes.contractor import router as contractor_router
 from api.routes.analyze_request import router as analyze_router
@@ -17,9 +18,18 @@ app = FastAPI(
 )
 
 # Set up CORS for the frontend PWA
+allowed_origins = [
+    origin.strip()
+    for origin in settings.frontend_origin.split(",")
+    if origin.strip()
+]
+for local_origin in ["http://localhost:3000", "http://127.0.0.1:3000"]:
+    if settings.mock_mode and local_origin not in allowed_origins:
+        allowed_origins.append(local_origin)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust this in production
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

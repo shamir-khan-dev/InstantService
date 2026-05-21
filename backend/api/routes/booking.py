@@ -38,6 +38,8 @@ async def complete_booking(payload: CompleteBookingPayload):
         booking, payload.rating, payload.review, contractor
     )
     DatabaseService.save_booking(booking)
+    DatabaseService.save_contractor(contractor)
+    DatabaseService.save_review(booking)
 
     return CompleteBookingResponse(
         booking_id=payload.booking_id,

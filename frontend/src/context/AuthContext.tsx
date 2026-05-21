@@ -39,7 +39,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = (userData: User) => {
     setUser(userData);
-    setCookie("instantservice_user", JSON.stringify(userData), { maxAge: 60 * 60 * 24 * 7 }); // 7 days
+    setCookie("instantservice_user", JSON.stringify(userData), {
+      maxAge: 60 * 60 * 24 * 7,
+      sameSite: "lax",
+      secure: typeof window !== "undefined" && window.location.protocol === "https:",
+    });
   };
 
   const logout = () => {

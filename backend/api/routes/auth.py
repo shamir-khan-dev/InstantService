@@ -36,6 +36,7 @@ class RegisterPayload(BaseModel):
     business_name: Optional[str] = None
     service_category: Optional[str] = None
     license_id: Optional[str] = None
+    location: Optional[str] = None
 
 
 class LoginPayload(BaseModel):
@@ -58,6 +59,9 @@ def _user_response(user: dict) -> dict:
 
 @router.post("/register")
 async def register(payload: RegisterPayload):
+    if payload.role not in {"client", "contractor"}:
+        raise HTTPException(status_code=400, detail="Role must be client or contractor")
+
     try:
         validate_password_complexity(payload.password)
     except ValueError as e:
@@ -75,6 +79,13 @@ async def register(payload: RegisterPayload):
             phone_number=payload.phone_number,
             role=payload.role,
         )
+        if payload.role == "contractor":
+            demo_store.create_contractor(
+                contractor_id=user_id,
+                full_name=payload.full_name,
+                service_category=payload.service_category,
+                location=payload.location,
+            )
         return {
             "status": "success",
             "user_id": user_id,
@@ -106,17 +117,41 @@ async def register(payload: RegisterPayload):
 
         if payload.role == "contractor":
             contractor_query = """
-            INSERT INTO CONTRACTORS (CONTRACTOR_ID, FULL_NAME, BUSINESS_NAME, LICENSE_ID, SERVICE_CATEGORY, ACTIVE_STATUS, TIER)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            INSERT INTO CONTRACTORS (
+                CONTRACTOR_ID,
+                FULL_NAME,
+                BUSINESS_NAME,
+                LICENSE_ID,
+                INSURANCE_VERIFIED,
+                TIER,
+                SERVICE_CATEGORY,
+                SERVICE_RANGE_KM,
+                LOCATION,
+                RATING_AVERAGE,
+                FIVE_STAR_REVIEW_COUNT,
+                ACCEPTED_REQUESTS,
+                TOTAL_REQUESTS_PINGED,
+                AVAILABILITY_STATUS,
+                ACTIVE_STATUS
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
             contractor_params = [
                 user_id,
                 payload.full_name,
                 payload.business_name or payload.full_name,
                 payload.license_id,
-                payload.service_category or "General Handyman",
-                "active",
+                False,
                 "Basic",
+                payload.service_category or "General Handyman",
+                25,
+                payload.location or "Toronto",
+                0.0,
+                0,
+                0,
+                0,
+                "Available",
+                "Active",
             ]
             run_command(contractor_query, contractor_params)
         else:

@@ -73,7 +73,8 @@ def run_command(query, params=None):
         cursor = connection.cursor()
         clean_params = _sanitize_params(params)
         cursor.execute(query, clean_params)
+        rows_affected = cursor.rowcount
         connection.commit()
-        return {"success": True}
+        return {"success": True, "rows_affected": rows_affected}
     finally:
         connection.close()

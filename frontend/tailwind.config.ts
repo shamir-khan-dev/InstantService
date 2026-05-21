@@ -31,7 +31,7 @@ const config: Config = {
         lg: "16px",
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--font-geist-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       transitionTimingFunction: {
         standard: "cubic-bezier(0.2, 0, 0, 1)",

@@ -35,23 +35,24 @@ class DatabaseService:
         if settings.mock_mode:
             return _store.get_all_contractors()
 
-        query = "SELECT * FROM CONTRACTORS WHERE ACTIVE_STATUS = 'Active'"
+        query = "SELECT * FROM CONTRACTORS WHERE UPPER(COALESCE(ACTIVE_STATUS, '')) = 'ACTIVE'"
         rows = run_query(query)
 
         contractors = []
         for row in rows:
+            accepted_requests = row.get("ACCEPTED_REQUESTS") or 0
+            total_requests = row.get("TOTAL_REQUESTS_PINGED") or 0
+            acceptance_rate = accepted_requests / total_requests if total_requests else 0.0
             contractors.append(
                 Contractor(
                     contractor_id=row["CONTRACTOR_ID"],
-                    name=row["FULL_NAME"],
-                    service_category=row["SERVICE_CATEGORY"],
-                    location=row["LOCATION"],
-                    tier=row["TIER"],
-                    acceptance_rate=(
-                        row["ACCEPTED_REQUESTS"] / max(row["TOTAL_REQUESTS_PINGED"], 1)
-                    ),
-                    five_star_review_count=row["FIVE_STAR_REVIEW_COUNT"],
-                    is_active=(row["ACTIVE_STATUS"] == "Active"),
+                    name=row.get("FULL_NAME") or "Unnamed Contractor",
+                    service_category=row.get("SERVICE_CATEGORY") or "General Handyman",
+                    location=row.get("LOCATION") or "Unknown",
+                    tier=row.get("TIER") or Tier.BASIC,
+                    acceptance_rate=acceptance_rate,
+                    five_star_review_count=row.get("FIVE_STAR_REVIEW_COUNT") or 0,
+                    is_active=(str(row.get("ACTIVE_STATUS") or "").lower() == "active"),
                     distance_km=0.0,
                 )
             )
@@ -86,6 +87,56 @@ class DatabaseService:
             booking.premium_coverage,
         ]
         run_command(query, params)
+
+    @staticmethod
+    def save_contractor(contractor: Contractor):
+        if settings.mock_mode:
+            _store.update_contractor(contractor)
+            return
+
+        query = """
+        UPDATE CONTRACTORS
+        SET FIVE_STAR_REVIEW_COUNT = %s,
+            TIER = %s
+        WHERE CONTRACTOR_ID = %s
+        """
+        run_command(
+            query,
+            [
+                contractor.five_star_review_count,
+                contractor.tier,
+                contractor.contractor_id,
+            ],
+        )
+
+    @staticmethod
+    def save_review(booking: Booking):
+        if settings.mock_mode:
+            return
+        if booking.rating is None:
+            return
+
+        query = """
+        INSERT INTO REVIEWS (
+            REVIEW_ID,
+            BOOKING_ID,
+            CLIENT_ID,
+            CONTRACTOR_ID,
+            RATING,
+            REVIEW_TEXT
+        )
+        SELECT UUID_STRING(), %s, %s, %s, %s, %s
+        """
+        run_command(
+            query,
+            [
+                booking.booking_id,
+                booking.client_id,
+                booking.contractor_id,
+                booking.rating,
+                booking.review,
+            ],
+        )
 
     @staticmethod
     def save_tier_selection(request_id: str, tier_name: str):
@@ -139,10 +190,10 @@ class DatabaseService:
         if settings.mock_mode:
             return _store.update_booking_status(booking_id, new_status)
         try:
-            run_command(
+            result = run_command(
                 "UPDATE BOOKINGS SET STATUS = %s WHERE BOOKING_ID = %s",
                 [new_status, booking_id],
             )
-            return True
+            return (result.get("rows_affected") or 0) > 0
         except Exception:
             return False

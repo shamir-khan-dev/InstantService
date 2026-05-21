@@ -188,6 +188,27 @@ def create_user(
     }
 
 
+def create_contractor(
+    contractor_id: str,
+    full_name: str,
+    service_category: Optional[str],
+    location: Optional[str] = None,
+) -> None:
+    _CONTRACTORS.append(
+        Contractor(
+            contractor_id=contractor_id,
+            name=full_name,
+            service_category=service_category or "General Handyman",
+            location=location or "Toronto",
+            tier=Tier.BASIC,
+            five_star_review_count=0,
+            acceptance_rate=0.0,
+            is_active=True,
+            distance_km=8.0,
+        )
+    )
+
+
 def update_contractor(contractor: Contractor) -> None:
     for i, c in enumerate(_CONTRACTORS):
         if c.contractor_id == contractor.contractor_id:

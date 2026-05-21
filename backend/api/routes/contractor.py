@@ -1,7 +1,11 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
+from config.settings import settings
 from services.snowflake_service import run_query, run_command
+
+if settings.mock_mode:
+    from services import demo_store
 
 router = APIRouter(prefix="/api/contractor", tags=["contractor"])
 
@@ -14,6 +18,33 @@ class ContractorResponse(BaseModel):
 
 @router.get("/dashboard/{contractor_id}")
 def get_contractor_dashboard(contractor_id: str):
+    if settings.mock_mode:
+        contractor = demo_store.get_contractor(contractor_id)
+        if not contractor:
+            raise HTTPException(status_code=404, detail="Contractor not found")
+
+        acceptance_rate = round(contractor.acceptance_rate * 100, 2)
+        return {
+            "contractor": {
+                "CONTRACTOR_ID": contractor.contractor_id,
+                "FULL_NAME": contractor.name,
+                "BUSINESS_NAME": contractor.name,
+                "TIER": contractor.tier.value,
+                "SERVICE_CATEGORY": contractor.service_category,
+                "FIVE_STAR_REVIEW_COUNT": contractor.five_star_review_count,
+                "ACCEPTED_REQUESTS": None,
+                "TOTAL_REQUESTS_PINGED": None,
+                "AVAILABILITY_STATUS": "Available" if contractor.is_active else "Unavailable",
+            },
+            "metrics": {
+                "five_star_review_count": contractor.five_star_review_count,
+                "accepted_requests": None,
+                "total_requests_pinged": None,
+                "acceptance_rate": acceptance_rate,
+            },
+            "incoming_ping": None,
+        }
+
     contractors = run_query(
         """
         SELECT
@@ -86,6 +117,22 @@ def respond_to_ping(payload: ContractorResponse):
             status_code=400,
             detail="Action must be either accept or decline",
         )
+
+    if settings.mock_mode:
+        contractor = demo_store.get_contractor(payload.contractor_id)
+        if not contractor:
+            raise HTTPException(status_code=404, detail="Contractor not found")
+        if not demo_store.get_service_request(payload.request_id):
+            raise HTTPException(status_code=404, detail="Service request not found")
+
+        event_type = "PING_ACCEPTED" if payload.action == "accept" else "PING_DECLINED"
+        return {
+            "success": True,
+            "action": payload.action,
+            "event_type": event_type,
+            "message": "Contractor response recorded.",
+            "dashboard": get_contractor_dashboard(payload.contractor_id),
+        }
 
     contractor_exists = run_query(
         """
