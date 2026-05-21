@@ -51,8 +51,8 @@ export function AuthScreen() {
         const res = await apiLogin({ email, password });
         login(res.user);
       }
-    } catch (err: any) {
-      setError(err.message || "Authentication failed. Please check your credentials.");
+    } catch (err: unknown) {
+      setError((err as Error).message || "Authentication failed. Please check your credentials.");
     } finally {
       setIsLoading(false);
     }

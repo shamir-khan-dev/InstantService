@@ -17,7 +17,35 @@ interface ProfileScreenProps {
   onTabChange: (tab: Tab) => void;
 }
 
-// ... (PAST_BOOKINGS array stays the same)
+const PAST_BOOKINGS = [
+  {
+    id: "b-001",
+    category: "Plumbing",
+    contractor: "Northline Plumbing",
+    date: "Apr 18, 2026",
+    tier: "Plus",
+    tierClass: "bg-blue-50 text-tierPlus",
+    status: "Completed",
+  },
+  {
+    id: "b-002",
+    category: "Electrical",
+    contractor: "Volta Electric Co.",
+    date: "Mar 4, 2026",
+    tier: "Premium",
+    tierClass: "bg-blue-950/5 text-tierPremium",
+    status: "Completed",
+  },
+  {
+    id: "b-003",
+    category: "HVAC",
+    contractor: "AirRight Services",
+    date: "Jan 21, 2026",
+    tier: "Basic",
+    tierClass: "bg-slate-100 text-tierBasic",
+    status: "Completed",
+  },
+];
 
 export function ProfileScreen({ onTabChange }: ProfileScreenProps) {
   const { user, logout } = useAuth();

@@ -10,7 +10,6 @@ import {
   Zap, 
   Clock, 
   CheckCircle2,
-  Bell,
   Settings,
   Power,
   ChevronRight

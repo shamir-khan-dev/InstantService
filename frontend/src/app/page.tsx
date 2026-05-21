@@ -9,7 +9,7 @@ import { ProfileScreen } from "@/components/screens/ProfileScreen";
 import { SettingsScreen } from "@/components/screens/SettingsScreen";
 import { TierSelectionScreen } from "@/components/screens/TierSelectionScreen";
 import { useBookingFlow } from "@/hooks/useBookingFlow";
-import type { Tab } from "@/components/ui/BottomNav";
+import { BottomNav, type Tab } from "@/components/ui/BottomNav";
 
 import { useAuth } from "@/context/AuthContext";
 import { AuthScreen } from "@/components/screens/AuthScreen";
