@@ -23,3 +23,10 @@ dist/
 
 # OS
 .DS_Store
+
+# Agent files
+.agents/
+skills-lock.json
+
+# Temporary scripts
+list_projects.py
