@@ -8,5 +8,4 @@ snowflake-connector-python
 passlib[bcrypt]
 PyJWT
 python-multipart
-elevenlabs
 rich
