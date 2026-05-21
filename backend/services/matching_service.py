@@ -52,14 +52,23 @@ class MatchingService:
             # Fallback mode: Every tier is eligible
             eligible_tiers = [Tier.BASIC, Tier.PLUS, Tier.PREMIUM]
         
-        # Filter
+        # Filter by category; fall back to General Handyman if none match
         eligible_contractors = [
-            c for c in contractors 
-            if c.is_active 
+            c
+            for c in contractors
+            if c.is_active
             and c.service_category == service_category
             and c.tier in eligible_tiers
         ]
-        
+        if not eligible_contractors and service_category != "General Handyman":
+            eligible_contractors = [
+                c
+                for c in contractors
+                if c.is_active
+                and c.service_category == "General Handyman"
+                and c.tier in eligible_tiers
+            ]
+
         # Rank by score descending
         eligible_contractors.sort(
             key=lambda c: MatchingService.calculate_score(c, requested_tier, urgency), 

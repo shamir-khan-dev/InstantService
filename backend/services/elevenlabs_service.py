@@ -76,8 +76,8 @@ def generate_voice_confirmation(text: str) -> dict:
             audio_base64 = base64.b64encode(response.content).decode("utf-8")
             return {
                 "audio_base64": audio_base64,
-                "voice_status": "generated",
-                "fallback_text": text
+                "voice_status": "success",
+                "fallback_text": text,
             }
         else:
             print(f"ElevenLabs Error: {response.status_code} - {response.text}")

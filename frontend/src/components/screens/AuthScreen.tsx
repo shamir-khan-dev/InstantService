@@ -24,6 +24,26 @@ export function AuthScreen() {
   const [serviceCategory, setServiceCategory] = useState("General Handyman");
   const [licenseId, setLicenseId] = useState("");
 
+  const handleDemoLogin = async (demoRole: UserRole) => {
+    setIsLoading(true);
+    setError(null);
+    const demoEmail =
+      demoRole === "contractor"
+        ? "contractor@instantservice.app"
+        : "demo@instantservice.app";
+    try {
+      const res = await apiLogin({ email: demoEmail, password: "DemoPass1!" });
+      login(res.user);
+    } catch (err: unknown) {
+      setError(
+        (err as Error).message ||
+          "Demo login failed. Start the backend with MOCK_MODE=true."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -250,6 +270,26 @@ export function AuthScreen() {
               )}
             </button>
           </form>
+
+          <div className="mt-6 pt-6 border-t border-border/50 flex flex-col gap-2">
+            <p className="text-xs text-muted text-center">Try the demo without signing up</p>
+            <button
+              type="button"
+              disabled={isLoading}
+              onClick={() => handleDemoLogin("client")}
+              className="w-full py-3 rounded-xl border border-border text-sm font-semibold text-ink hover:bg-bg/80 transition-colors disabled:opacity-60"
+            >
+              Continue as Demo Client
+            </button>
+            <button
+              type="button"
+              disabled={isLoading}
+              onClick={() => handleDemoLogin("contractor")}
+              className="w-full py-3 rounded-xl border border-border text-sm font-semibold text-muted hover:bg-bg/80 transition-colors disabled:opacity-60"
+            >
+              Continue as Demo Contractor
+            </button>
+          </div>
         </div>
 
         <p className="text-center text-xs text-muted leading-relaxed">

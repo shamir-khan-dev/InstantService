@@ -26,8 +26,8 @@ async def analyze_request(payload: AnalyzeRequestPayload):
         # 3. Save to Snowflake (using a demo client ID for now)
         DatabaseService.save_service_request(
             request_id=request_id,
-            client_id="cli_demo_1",
-            analysis=analysis
+            client_id=payload.client_id,
+            analysis=analysis,
         )
         
         # 4. Return response

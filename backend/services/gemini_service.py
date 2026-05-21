@@ -41,27 +41,55 @@ Client message: {message}
 Location: {location}
 Property type: {property_type}"""
 
-def analyze_message(message):
-    is_demo = os.getenv("DEMO_MODE", "").lower() == "true"
-    has_no_key = not os.getenv("GEMINI_API_KEY")
+def _demo_analyze(message: str) -> dict:
+    msg = message.lower()
+    if any(w in msg for w in ["sink", "plumb", "leak", "faucet", "pipe", "drain"]):
+        return {
+            "service_category": "Plumbing",
+            "problem_summary": "Bathroom sink leak with water pooling under cabinet",
+            "urgency": "High",
+            "property_type": "Residential",
+            "estimated_complexity": "Medium",
+            "recommended_tier": "Plus",
+            "client_facing_explanation": "This is a plumbing issue that should be handled soon to prevent water damage.",
+            "contractor_summary": "Check drain connections and supply lines under the sink.",
+        }
+    if any(w in msg for w in ["power", "electric", "outlet", "breaker", "wire", "light"]):
+        return {
+            "service_category": "Electrical",
+            "problem_summary": "Electrical issue requiring licensed inspection",
+            "urgency": "High",
+            "property_type": "Residential",
+            "estimated_complexity": "Medium",
+            "recommended_tier": "Plus",
+            "client_facing_explanation": "Electrical problems should be addressed promptly for safety.",
+            "contractor_summary": "Inspect panel, outlets, and affected circuits.",
+        }
+    if any(w in msg for w in ["ac", "hvac", "heat", "cooling", "furnace", "air condition"]):
+        return {
+            "service_category": "HVAC",
+            "problem_summary": "HVAC system not cooling or heating properly",
+            "urgency": "High",
+            "property_type": "Residential",
+            "estimated_complexity": "Medium",
+            "recommended_tier": "Premium",
+            "client_facing_explanation": "Comfort systems failing often need urgent service.",
+            "contractor_summary": "Inspect HVAC unit, thermostat, and airflow.",
+        }
+    return FALLBACK_RESPONSE.copy()
 
-    if is_demo and has_no_key:
-        msg_content = message.lower()
-        # Expanded keywords for a smoother demo
-        if any(word in msg_content for word in ["sink", "plumb", "leak", "faucet"]):
-            return {
-                "service_category": "Plumbing",
-                "problem_summary": "Bathroom sink leak with water pooling under cabinet",
-                "urgency": "High",
-                "property_type": "Residential",
-                "estimated_complexity": "Medium",
-                "recommended_tier": "Plus",
-                "client_facing_explanation": "This is a plumbing issue that should be handled soon to prevent water damage.",
-                "contractor_summary": "Check drain connections and supply lines."
-            }
-        return FALLBACK_RESPONSE.copy()
-    
+
 def analyze_service_request(message, location="Unknown", property_type="Unknown"):
+    mock_mode = os.getenv("MOCK_MODE", "true").lower() == "true"
+    demo_mode = os.getenv("DEMO_MODE", "true").lower() == "true"
+    has_no_key = not (GEMINI_API_KEY or "").strip()
+
+    if mock_mode or demo_mode or has_no_key:
+        result = _demo_analyze(message)
+        if property_type in ["Residential", "Commercial", "Unknown"]:
+            result["property_type"] = property_type
+        return result
+
     try:
         prompt = PROMPT.format(message=message, location=location, property_type=property_type)
         payload = {

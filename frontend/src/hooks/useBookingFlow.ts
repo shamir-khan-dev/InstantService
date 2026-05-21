@@ -297,7 +297,7 @@ export function useBookingFlow(): BookingFlowApi {
     };
     try {
       const voice = await apiVoiceConfirmation(body);
-      if (voice.voice_status === "success") {
+      if (voice.voice_status === "success" || voice.voice_status === "generated") {
         dispatch({ type: "VOICE_SUCCESS", voice });
       } else {
         dispatch({
