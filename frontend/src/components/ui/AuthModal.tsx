@@ -28,6 +28,34 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     setIsLoading(true);
     setError(null);
 
+    if (mode === "register") {
+      if (password.length < 8) {
+        setError("Password must be at least 8 characters long.");
+        setIsLoading(false);
+        return;
+      }
+      if (!/[A-Z]/.test(password)) {
+        setError("Password must contain at least one uppercase letter.");
+        setIsLoading(false);
+        return;
+      }
+      if (!/[a-z]/.test(password)) {
+        setError("Password must contain at least one lowercase letter.");
+        setIsLoading(false);
+        return;
+      }
+      if (!/[0-9]/.test(password)) {
+        setError("Password must contain at least one number.");
+        setIsLoading(false);
+        return;
+      }
+      if (!/[!@#$%^&*(),.?\":{}|<>_\-+=\[\]\\/~`']/.test(password)) {
+        setError("Password must contain at least one special character.");
+        setIsLoading(false);
+        return;
+      }
+    }
+
     const path = mode === "login" ? "/login" : "/register";
     const body = mode === "login" 
       ? { email, password }

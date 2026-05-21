@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 import uuid
+import re
 from passlib.context import CryptContext
 from services.database import DatabaseService
 from services.snowflake_service import run_command, run_query
@@ -10,6 +11,18 @@ router = APIRouter()
 
 # Password hashing setup
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def validate_password_complexity(password: str):
+    if len(password) < 8:
+        raise ValueError("Password must be at least 8 characters long.")
+    if not any(char.isupper() for char in password):
+        raise ValueError("Password must contain at least one uppercase letter.")
+    if not any(char.islower() for char in password):
+        raise ValueError("Password must contain at least one lowercase letter.")
+    if not any(char.isdigit() for char in password):
+        raise ValueError("Password must contain at least one digit.")
+    if not re.search(r"[!@#$%^&*(),.?\":{}|<>_\-+=\[\]\\/~`']", password):
+        raise ValueError("Password must contain at least one special character.")
 
 class RegisterPayload(BaseModel):
     email: EmailStr
@@ -28,6 +41,12 @@ class LoginPayload(BaseModel):
 
 @router.post("/register")
 async def register(payload: RegisterPayload):
+    # Validate password complexity
+    try:
+        validate_password_complexity(payload.password)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
     # 1. Check if user exists
     existing = run_query("SELECT * FROM USERS WHERE EMAIL = %s", [payload.email])
     if existing:
