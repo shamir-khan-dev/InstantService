@@ -9,7 +9,7 @@ interface AuthModalProps {
   onClose: () => void;
 }
 
-const API_URL = "http://localhost:8000/api/auth";
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/api/auth`;
 
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [mode, setMode] = useState<"login" | "register">("login");
