@@ -17,19 +17,10 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Set up CORS for the frontend PWA
-allowed_origins = [
-    origin.strip()
-    for origin in settings.frontend_origin.split(",")
-    if origin.strip()
-]
-for local_origin in ["http://localhost:3000", "http://127.0.0.1:3000"]:
-    if settings.mock_mode and local_origin not in allowed_origins:
-        allowed_origins.append(local_origin)
-
+# Set up CORS for the frontend PWA (allowing localhost, Vercel, and custom origins dynamically)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origin_regex="https?://.*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
