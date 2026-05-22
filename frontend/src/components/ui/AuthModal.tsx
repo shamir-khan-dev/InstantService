@@ -9,7 +9,7 @@ interface AuthModalProps {
   onClose: () => void;
 }
 
-const API_URL = `${process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000"}/api/auth`;
+const API_URL = `${(process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000").replace(/\/$/, "")}/api/auth`;
 
 export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [mode, setMode] = useState<"login" | "register">("login");
@@ -179,6 +179,18 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 </>
               )}
             </button>
+            {mode === "login" && (
+              <button
+                type="button"
+                onClick={() => {
+                  setEmail("demo@instantservice.app");
+                  setPassword("DemoPass1!");
+                }}
+                className="w-full text-xs font-bold text-primary bg-primary/5 border border-primary/20 py-2.5 rounded-lg hover:bg-primary/10 transition-colors"
+              >
+                Autofill Demo Credentials
+              </button>
+            )}
           </form>
 
           <footer className="mt-6 text-center text-sm text-muted">
