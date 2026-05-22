@@ -70,7 +70,10 @@ async def dispatch_request(payload: DispatchPayload):
         
         status_msg = "Dispatched"
         if best_contractor.tier != selected_tier:
-            status_msg = f"Dispatched ({best_contractor.tier} worker assigned for {selected_tier} request)"
+            status_msg = (
+                f"Dispatched ({best_contractor.tier.value} worker assigned "
+                f"for {selected_tier.value} request)"
+            )
 
         return DispatchResponse(
             booking_id=booking_id,
