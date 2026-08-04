@@ -31,3 +31,7 @@ skills-lock.json
 
 # Temporary scripts
 list_projects.py
+
+__pycache__/
+*.pyc
+
