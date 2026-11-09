@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>InstantService Launch Video</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      background: #090e1a;
+      color: #f8fafc;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .clip {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #scene1 {
+      opacity: 1;
+    }
+    .card-border {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(15, 23, 42, 0.8);
+    }
+    .card-border-blue {
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      background: rgba(30, 58, 138, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="main" data-start="0" data-duration="18" data-width="1920" data-height="1080" class="relative w-[1920px] h-[1080px] bg-[#080d18] overflow-hidden">
+    <audio id="bgm" src="assets/music/bgm.mp3" data-start="0" data-duration="18"></audio>
+
+    <!-- Scene 1: Problem (0 - 3.5s) -->
+    <div id="scene1" class="scene clip flex flex-col items-center justify-center text-center p-20" data-start="0" data-duration="3.5" data-track-index="1" data-hold="true" data-layout-allow-overlap="true">
+      <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full card-border mb-8">
+        <span class="w-3 h-3 rounded-full bg-rose-500 animate-pulse"></span>
+        <span class="mono text-slate-300 text-lg uppercase tracking-wider">The Dispatch Bottleneck</span>
+      </div>
+      <h1 class="text-7xl font-extrabold tracking-tight leading-tight max-w-5xl mb-8">
+        Finding Verified Contractors Still Relies On <span class="text-rose-400">Cold Calls</span> & Empty Callbacks
+      </h1>
+      <p class="text-2xl text-slate-400 max-w-3xl leading-relaxed">
+        Homeowners waste hours explaining emergencies while contractors sift through fragmented unqualified leads.
+      </p>
+    </div>
+
+    <!-- Scene 2: The Solution (3.5 - 7.5s) -->
+    <div id="scene2" class="scene clip flex flex-col items-center justify-center text-center p-20" data-start="3.5" data-duration="4.0" data-track-index="1" data-hold="true" data-layout-allow-overlap="true">
+      <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full card-border-blue mb-8">
+        <span class="w-3 h-3 rounded-full bg-blue-400"></span>
+        <span class="mono text-blue-300 text-lg uppercase tracking-wider">Autonomous Dispatch Engine</span>
+      </div>
+      <h1 class="text-8xl font-black tracking-tight leading-none mb-6">
+        Instant<span class="text-blue-500">Service</span>
+      </h1>
+      <p class="text-3xl text-slate-300 font-medium max-w-4xl leading-relaxed mb-10">
+        AI Driven Contractor Matching & Instant Service Routing Platform
+      </p>
+      <div class="flex items-center gap-6">
+        <div class="px-6 py-3 rounded-xl card-border mono text-slate-300 text-xl">
+          Gemini NLU Parser
+        </div>
+        <div class="px-6 py-3 rounded-xl card-border mono text-slate-300 text-xl">
+          ElevenLabs Audio Voice
+        </div>
+        <div class="px-6 py-3 rounded-xl card-border-blue mono text-blue-300 text-xl font-bold">
+          One Tap Dispatch
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 3: Engine Architecture (7.5 - 11.5s) -->
+    <div id="scene3" class="scene clip flex flex-col justify-center px-28 py-16" data-start="7.5" data-duration="4.0" data-track-index="1" data-hold="true" data-layout-allow-overlap="true">
+      <div class="flex items-center justify-between mb-10">
+        <div>
+          <span class="mono text-blue-400 text-sm font-semibold uppercase tracking-wider">System Architecture</span>
+          <h2 class="text-5xl font-bold tracking-tight text-white mt-1">Autonomous Dispatch Workflow</h2>
+        </div>
+        <div class="mono text-right card-border px-5 py-3 rounded-xl">
+          <div class="text-xs text-slate-400 uppercase tracking-wider" data-layout-ignore="true">Dispatch Engine</div>
+          <div class="text-2xl font-bold text-blue-400">Zero Callback Delay</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-8">
+        <div class="p-8 rounded-2xl card-border flex flex-col justify-between">
+          <div>
+            <div class="mono text-xs text-slate-400 uppercase tracking-widest mb-2" data-layout-ignore="true">Stage 1: Intent Extraction</div>
+            <h3 class="text-2xl font-bold text-white mb-3">Gemini 1.5 NLU Parsing</h3>
+            <p class="text-slate-400 text-lg leading-relaxed">
+              Transforms natural problem statements into structured diagnostic categories and urgency rankings.
+            </p>
+          </div>
+          <div class="mt-6 pt-6 border-t border-slate-800 flex justify-between items-center mono">
+            <span class="text-slate-400 text-base" data-layout-ignore="true">Accuracy Metric</span>
+            <span class="text-blue-400 font-bold text-lg">>95% Strict</span>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl card-border flex flex-col justify-between">
+          <div>
+            <div class="mono text-xs text-slate-400 uppercase tracking-widest mb-2" data-layout-ignore="true">Stage 2: Voice Feedback</div>
+            <h3 class="text-2xl font-bold text-white mb-3">ElevenLabs Audio Output</h3>
+            <p class="text-slate-400 text-lg leading-relaxed">
+              Synthesizes real time voice confirmation and emergency safety guidance directly to the homeowner.
+            </p>
+          </div>
+          <div class="mt-6 pt-6 border-t border-slate-800 flex justify-between items-center mono">
+            <span class="text-slate-400 text-base" data-layout-ignore="true">Voice Pipeline</span>
+            <span class="text-blue-400 font-bold text-lg">Sub 800ms</span>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl card-border flex flex-col justify-between">
+          <div>
+            <div class="mono text-xs text-slate-400 uppercase tracking-widest mb-2" data-layout-ignore="true">Stage 3: Enterprise Ledger</div>
+            <h3 class="text-2xl font-bold text-white mb-3">Snowflake Cloud Ledger</h3>
+            <p class="text-slate-400 text-lg leading-relaxed">
+              Persists dispatch telemetries, contractor credentials, and verified rating histories at high concurrency.
+            </p>
+          </div>
+          <div class="mt-6 pt-6 border-t border-slate-800 flex justify-between items-center mono">
+            <span class="text-slate-400 text-base" data-layout-ignore="true">Data Isolation</span>
+            <span class="text-blue-400 font-bold text-lg">ACID Compliant</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 4: Performance & Benchmarks (11.5 - 15.0s) -->
+    <div id="scene4" class="scene clip flex flex-col justify-center px-28 py-16" data-start="11.5" data-duration="3.5" data-track-index="1" data-hold="true" data-layout-allow-overlap="true">
+      <div class="text-center mb-12">
+        <span class="mono text-blue-400 text-sm font-semibold uppercase tracking-wider">Production Benchmarks</span>
+        <h2 class="text-6xl font-bold tracking-tight text-white mt-2">Verified Real World Throughput</h2>
+      </div>
+
+      <div class="grid grid-cols-4 gap-6 max-w-6xl mx-auto w-full">
+        <div class="p-8 rounded-2xl card-border text-center">
+          <div class="text-5xl font-extrabold text-blue-400 mono mb-3">80%</div>
+          <div class="text-base text-slate-300 font-medium">Booking Friction Cut</div>
+          <div class="mono text-xs text-slate-500 mt-2" data-layout-ignore="true">One Tap Flow</div>
+        </div>
+        <div class="p-8 rounded-2xl card-border text-center">
+          <div class="text-5xl font-extrabold text-emerald-400 mono mb-3">sub 2s</div>
+          <div class="text-base text-slate-300 font-medium">Contractor Ping Time</div>
+          <div class="mono text-xs text-slate-500 mt-2" data-layout-ignore="true">FastAPI Webhooks</div>
+        </div>
+        <div class="p-8 rounded-2xl card-border text-center">
+          <div class="text-5xl font-extrabold text-blue-400 mono mb-3">100%</div>
+          <div class="text-base text-slate-300 font-medium">Contractor Vetting</div>
+          <div class="mono text-xs text-slate-500 mt-2" data-layout-ignore="true">Licensed & Insured</div>
+        </div>
+        <div class="p-8 rounded-2xl card-border text-center">
+          <div class="text-5xl font-extrabold text-emerald-400 mono mb-3">Zero</div>
+          <div class="text-base text-slate-300 font-medium">User Facing Failures</div>
+          <div class="mono text-xs text-slate-500 mt-2" data-layout-ignore="true">Graceful Fallbacks</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 5: Outro & Action (15.0 - 18.0s) -->
+    <div id="scene5" class="scene clip flex flex-col items-center justify-center text-center p-20" data-start="15.0" data-duration="3.0" data-track-index="1" data-hold="true" data-layout-allow-overlap="true">
+      <h1 class="text-7xl font-black tracking-tight leading-none mb-6">
+        Instant<span class="text-blue-500">Service</span>
+      </h1>
+      <p class="text-2xl text-slate-400 max-w-2xl leading-relaxed mb-8">
+        Autonomous AI Dispatch & Real Time Home Services Orchestration
+      </p>
+      <div class="flex items-center gap-6 mono text-lg">
+        <span class="px-6 py-3 rounded-xl card-border text-slate-300">FastAPI</span>
+        <span class="px-6 py-3 rounded-xl card-border text-slate-300">Next.js PWA</span>
+        <span class="px-6 py-3 rounded-xl card-border text-slate-300">Gemini NLU</span>
+        <span class="px-6 py-3 rounded-xl card-border text-slate-300">Snowflake</span>
+      </div>
+      <div class="mono text-sm text-slate-500 mt-10">
+        github.com/shamir-khan-dev/InstantService • Built By Shamir Khan
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // Scene 1: 0 - 3.5s
+    tl.to("#scene1", { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.0);
+    tl.to("#scene1", { opacity: 0, duration: 0.4, ease: "power2.in" }, 3.1);
+
+    // Scene 2: 3.5 - 7.5s
+    tl.to("#scene2", { opacity: 1, duration: 0.5, ease: "power2.out" }, 3.5);
+    tl.to("#scene2", { opacity: 0, duration: 0.4, ease: "power2.in" }, 7.1);
+
+    // Scene 3: 7.5 - 11.5s
+    tl.to("#scene3", { opacity: 1, duration: 0.5, ease: "power2.out" }, 7.5);
+    tl.to("#scene3", { opacity: 0, duration: 0.4, ease: "power2.in" }, 11.1);
+
+    // Scene 4: 11.5 - 15.0s
+    tl.to("#scene4", { opacity: 1, duration: 0.5, ease: "power2.out" }, 11.5);
+    tl.to("#scene4", { opacity: 0, duration: 0.4, ease: "power2.in" }, 14.6);
+
+    // Scene 5: 15.0 - 18.0s
+    tl.to("#scene5", { opacity: 1, duration: 0.5, ease: "power2.out" }, 15.0);
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines["main"] = tl;
+    tl.seek(0);
+  </script>
+</body>
+</html>
+

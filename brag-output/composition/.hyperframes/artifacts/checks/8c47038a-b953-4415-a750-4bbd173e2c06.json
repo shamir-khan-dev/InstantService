@@ -1,0 +1,492 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 6,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "timeline_track_too_dense",
+        "severity": "warning",
+        "message": "Track 1 has 5 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\shami\\OneDrive\\Desktop\\Coding\\Full-Stack Projects\\InstanceService\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move coherent scene groups into separate .html files under compositions/ and mount them from the parent with data-composition-src so the timeline stays easier to inspect, revise, and validate."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene1\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene1",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\shami\\OneDrive\\Desktop\\Coding\\Full-Stack Projects\\InstanceService\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene1\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene2\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene2",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\shami\\OneDrive\\Desktop\\Coding\\Full-Stack Projects\\InstanceService\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene2\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene3\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene3",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\shami\\OneDrive\\Desktop\\Coding\\Full-Stack Projects\\InstanceService\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene3\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene4\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene4",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\shami\\OneDrive\\Desktop\\Coding\\Full-Stack Projects\\InstanceService\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene4\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene5\"> is a timeline element that contains nested <h1>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene5",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\shami\\OneDrive\\Desktop\\Coding\\Full-Stack Projects\\InstanceService\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene5\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "18",
+          "data-width": "1920",
+          "data-height": "1080"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0,
+        "url": "https://cdn.tailwindcss.com/",
+        "line": 63
+      }
+    ]
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "duration": 18,
+    "samples": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15,
+      17
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 0,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 4.08:1; WCAG AA requires 4.5:1.",
+        "text": "github.com/shamir-khan-dev/InstantService • Built ",
+        "fg": "rgb(100,116,139)",
+        "bg": "rgb(8,13,24)",
+        "ratio": 4.08,
+        "requiredRatio": 4.5,
+        "suggestedColor": "rgb(108,123,145)",
+        "large": false,
+        "selector": "div > div:nth-of-type(5) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 691.1875,
+          "y": 680,
+          "width": 537.609375,
+          "height": 20
+        },
+        "time": 17,
+        "times": [
+          17
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      1,
+      5,
+      9,
+      13,
+      17
+    ],
+    "checked": 41,
+    "passed": 40
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 28 text elements stay under it for 0.5 s or more, the smallest \"System Architecture\" at 14 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "System Architecture",
+        "selector": "#scene3 > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 112,
+          "y": 351.25,
+          "width": 172.91,
+          "height": 18
+        },
+        "time": 7.75,
+        "times": [
+          0,
+          0,
+          3.75,
+          3.75,
+          3.75,
+          3.75,
+          7.75,
+          7.75,
+          7.75,
+          7.75,
+          7.75,
+          7.75,
+          7.75,
+          7.75,
+          7.75,
+          7.75,
+          7.75,
+          11.75,
+          11.75,
+          11.75,
+          11.75,
+          11.75,
+          15.25,
+          15.25,
+          15.25,
+          15.25,
+          15.25,
+          15.25
+        ],
+        "fontPx": 14,
+        "floorPx": 28,
+        "seconds": 3.75,
+        "elements": [
+          {
+            "selector": "#scene3 > div:nth-of-type(1) > div:nth-of-type(1) > span:nth-of-type(1)",
+            "text": "System Architecture",
+            "fontPx": 14,
+            "time": 7.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "div.text-center.mb-12 > span:nth-of-type(1)",
+            "text": "Production Benchmarks",
+            "fontPx": 14,
+            "time": 11.75,
+            "seconds": 3.25
+          },
+          {
+            "selector": "div.mono.text-sm",
+            "text": "github.com/shamir-khan-dev/InstantService • Built By Shamir Khan",
+            "fontPx": 14,
+            "time": 15.25,
+            "seconds": 2.75
+          },
+          {
+            "selector": "div.grid.grid-cols-4 > div:nth-of-type(1) > div:nth-of-type(2)",
+            "text": "Booking Friction Cut",
+            "fontPx": 16,
+            "time": 11.75,
+            "seconds": 3.25
+          },
+          {
+            "selector": "div.grid.grid-cols-4 > div:nth-of-type(2) > div:nth-of-type(2)",
+            "text": "Contractor Ping Time",
+            "fontPx": 16,
+            "time": 11.75,
+            "seconds": 3.25
+          },
+          {
+            "selector": "div.grid.grid-cols-4 > div:nth-of-type(3) > div:nth-of-type(2)",
+            "text": "Contractor Vetting",
+            "fontPx": 16,
+            "time": 11.75,
+            "seconds": 3.25
+          },
+          {
+            "selector": "div.grid.grid-cols-4 > div:nth-of-type(4) > div:nth-of-type(2)",
+            "text": "User Facing Failures",
+            "fontPx": 16,
+            "time": 11.75,
+            "seconds": 3.25
+          },
+          {
+            "selector": "span.mono.text-slate-300",
+            "text": "The Dispatch Bottleneck",
+            "fontPx": 18,
+            "time": 0,
+            "seconds": 3.5
+          },
+          {
+            "selector": "span.mono.text-blue-300",
+            "text": "Autonomous Dispatch Engine",
+            "fontPx": 18,
+            "time": 3.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "div.grid.grid-cols-3 > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+            "text": "Transforms natural problem statements into structured diagnostic categories and urgency rankings.",
+            "fontPx": 18,
+            "time": 7.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "div.grid.grid-cols-3 > div:nth-of-type(1) > div:nth-of-type(2) > span:nth-of-type(2)",
+            "text": ">95% Strict",
+            "fontPx": 18,
+            "time": 7.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "div.grid.grid-cols-3 > div:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+            "text": "Synthesizes real time voice confirmation and emergency safety guidance directly to the homeowner.",
+            "fontPx": 18,
+            "time": 7.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "div.grid.grid-cols-3 > div:nth-of-type(2) > div:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "Sub 800ms",
+            "fontPx": 18,
+            "time": 7.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "div.grid.grid-cols-3 > div:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+            "text": "Persists dispatch telemetries, contractor credentials, and verified rating histories at high concurrency.",
+            "fontPx": 18,
+            "time": 7.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "div.grid.grid-cols-3 > div:nth-of-type(3) > div:nth-of-type(2) > span:nth-of-type(2)",
+            "text": "ACID Compliant",
+            "fontPx": 18,
+            "time": 7.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "#scene5 > div:nth-of-type(1) > span:nth-of-type(1)",
+            "text": "FastAPI",
+            "fontPx": 18,
+            "time": 15.25,
+            "seconds": 2.75
+          },
+          {
+            "selector": "#scene5 > div:nth-of-type(1) > span:nth-of-type(2)",
+            "text": "Next.js PWA",
+            "fontPx": 18,
+            "time": 15.25,
+            "seconds": 2.75
+          },
+          {
+            "selector": "#scene5 > div:nth-of-type(1) > span:nth-of-type(3)",
+            "text": "Gemini NLU",
+            "fontPx": 18,
+            "time": 15.25,
+            "seconds": 2.75
+          },
+          {
+            "selector": "#scene5 > div:nth-of-type(1) > span:nth-of-type(4)",
+            "text": "Snowflake",
+            "fontPx": 18,
+            "time": 15.25,
+            "seconds": 2.75
+          },
+          {
+            "selector": "#scene2 > div:nth-of-type(2) > div:nth-of-type(1)",
+            "text": "Gemini NLU Parser",
+            "fontPx": 20,
+            "time": 3.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "#scene2 > div:nth-of-type(2) > div:nth-of-type(2)",
+            "text": "ElevenLabs Audio Voice",
+            "fontPx": 20,
+            "time": 3.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "#scene2 > div:nth-of-type(2) > div:nth-of-type(3)",
+            "text": "One Tap Dispatch",
+            "fontPx": 20,
+            "time": 3.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "#scene1 > p:nth-of-type(1)",
+            "text": "Homeowners waste hours explaining emergencies while contractors sift through fragmented unqualified leads.",
+            "fontPx": 24,
+            "time": 0,
+            "seconds": 3.5
+          },
+          {
+            "selector": "div.text-2xl.font-bold",
+            "text": "Zero Callback Delay",
+            "fontPx": 24,
+            "time": 7.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "div.grid.grid-cols-3 > div:nth-of-type(1) > div:nth-of-type(1) > h3:nth-of-type(1)",
+            "text": "Gemini 1.5 NLU Parsing",
+            "fontPx": 24,
+            "time": 7.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "div.grid.grid-cols-3 > div:nth-of-type(2) > div:nth-of-type(1) > h3:nth-of-type(1)",
+            "text": "ElevenLabs Audio Output",
+            "fontPx": 24,
+            "time": 7.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "div.grid.grid-cols-3 > div:nth-of-type(3) > div:nth-of-type(1) > h3:nth-of-type(1)",
+            "text": "Snowflake Cloud Ledger",
+            "fontPx": 24,
+            "time": 7.75,
+            "seconds": 3.75
+          },
+          {
+            "selector": "#scene5 > p:nth-of-type(1)",
+            "text": "Autonomous AI Dispatch & Real Time Home Services Orchestration",
+            "fontPx": 24,
+            "time": 15.25,
+            "seconds": 2.75
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 144
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

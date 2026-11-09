@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "historyId": "e3552e71-5a5b-49fe-8fde-9fd7bfad69b7",
+  "currentRevision": "12835695-03da-4294-a66b-5071fcaf6288",
+  "pendingChanges": false,
+  "files": {
+    "assets/music/bgm.mp3": {
+      "hash": "84950aab19f80822fcd9f41bb1610a4479e8f496dc6bca451cc9f2765d6c004a",
+      "content": "C:\\Users\\shami\\.cache\\hyperframes\\history\\e3552e71-5a5b-49fe-8fde-9fd7bfad69b7\\blobs\\84\\84950aab19f80822fcd9f41bb1610a4479e8f496dc6bca451cc9f2765d6c004a"
+    },
+    "hyperframes.json": {
+      "hash": "a460a1cf3fcc2672ccbd28820fc6190c0f0ef7eb43b9e0b56e888222994fc057",
+      "content": "C:\\Users\\shami\\.cache\\hyperframes\\history\\e3552e71-5a5b-49fe-8fde-9fd7bfad69b7\\blobs\\a4\\a460a1cf3fcc2672ccbd28820fc6190c0f0ef7eb43b9e0b56e888222994fc057"
+    },
+    "index.html": {
+      "hash": "001e1895270ba6e71ca8f0b34a3cf49e7650884e22822e4026ff03311d495351",
+      "content": "C:\\Users\\shami\\.cache\\hyperframes\\history\\e3552e71-5a5b-49fe-8fde-9fd7bfad69b7\\blobs\\00\\001e1895270ba6e71ca8f0b34a3cf49e7650884e22822e4026ff03311d495351"
+    },
+    "package.json": {
+      "hash": "63b20f52584e4ba40d5fea752e74e87a1a74b09a5f6307099ec7223d9ed4baf8",
+      "content": "C:\\Users\\shami\\.cache\\hyperframes\\history\\e3552e71-5a5b-49fe-8fde-9fd7bfad69b7\\blobs\\63\\63b20f52584e4ba40d5fea752e74e87a1a74b09a5f6307099ec7223d9ed4baf8"
+    }
+  },
+  "revisions": {
+    "12835695-03da-4294-a66b-5071fcaf6288": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794190941785,
+      "endedAt": 1794190941847,
+      "files": {
+        "hyperframes.json": {
+          "before": "C:\\Users\\shami\\.cache\\hyperframes\\history\\e3552e71-5a5b-49fe-8fde-9fd7bfad69b7\\blobs\\53\\53dbce1e19aa713cbb12ee0bc4d206143b45ab15e6ffbfcaa8f69572d4d24d50",
+          "after": "C:\\Users\\shami\\.cache\\hyperframes\\history\\e3552e71-5a5b-49fe-8fde-9fd7bfad69b7\\blobs\\a4\\a460a1cf3fcc2672ccbd28820fc6190c0f0ef7eb43b9e0b56e888222994fc057"
+        },
+        "index.html": {
+          "before": "C:\\Users\\shami\\.cache\\hyperframes\\history\\e3552e71-5a5b-49fe-8fde-9fd7bfad69b7\\blobs\\2f\\2ff629c33ddf4913795a550cbb48ae1d33f310261698cb2794d6251303063f3d",
+          "after": "C:\\Users\\shami\\.cache\\hyperframes\\history\\e3552e71-5a5b-49fe-8fde-9fd7bfad69b7\\blobs\\00\\001e1895270ba6e71ca8f0b34a3cf49e7650884e22822e4026ff03311d495351"
+        },
+        "package.json": {
+          "before": "C:\\Users\\shami\\.cache\\hyperframes\\history\\e3552e71-5a5b-49fe-8fde-9fd7bfad69b7\\blobs\\73\\73a0b1072e2ce696f8eb046b37fe9c67e5c4df5c0fd4bc02e2dfb9eafca94651",
+          "after": "C:\\Users\\shami\\.cache\\hyperframes\\history\\e3552e71-5a5b-49fe-8fde-9fd7bfad69b7\\blobs\\63\\63b20f52584e4ba40d5fea752e74e87a1a74b09a5f6307099ec7223d9ed4baf8"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "8c47038a-b953-4415-a750-4bbd173e2c06"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "8c47038a-b953-4415-a750-4bbd173e2c06",
+        "scope": "project",
+        "report": "C:\\Users\\shami\\OneDrive\\Desktop\\Coding\\Full-Stack Projects\\InstanceService\\brag-output\\composition\\.hyperframes\\artifacts\\checks\\8c47038a-b953-4415-a750-4bbd173e2c06.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "cache": true,
+            "contrast": true,
+            "craft": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto",
+            "includeUnmounted": false
+          }
+        },
+        "createdAt": 1794190926782,
+        "contentHash": "0b7340768d4d53e3bc5be870cf0e37c5a8a32a6c8107efd0cd818be54fae4751",
+        "revision": null,
+        "inputFingerprint": "1e271cad85a39145599c56694574f5833f26c8a885142743b628c86d0c7b5bcf",
+        "inputScope": "local-project-files",
+        "attribution": "inputs-changed"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  },
+  "renders": {
+    "latest": {
+      "id": "fa23928d-f9b4-4d3c-9b80-6eac78bd3446",
+      "completedAt": 1794191022150,
+      "output": "C:\\Users\\shami\\OneDrive\\Desktop\\Coding\\Full-Stack Projects\\InstanceService\\brag-output\\brag.mp4",
+      "status": "completed",
+      "revision": "12835695-03da-4294-a66b-5071fcaf6288"
+    },
+    "retainedRevisions": [
+      "12835695-03da-4294-a66b-5071fcaf6288"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

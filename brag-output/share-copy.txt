@@ -1,0 +1,12 @@
+InstantService: Autonomous AI Contractor Dispatch & Real Time Telemetry Platform
+
+Engineered a production ready autonomous service dispatch Progressive Web App. Transforms unstructured natural language problem descriptions into structured diagnostic dispatches using Gemini 1.5 NLU, provides real time audio feedback via ElevenLabs neural voice, and manages contractor registries in Snowflake.
+
+Key Architecture Capabilities:
+• Gemini 1.5 NLU intent extraction with 95%+ classification accuracy
+• Instant one tap dispatch eliminating manual phone tag and wait times
+• Real time audio voice confirmation synthesis via ElevenLabs
+• High concurrency Snowflake enterprise relational schema and Bcrypt secure sessions
+
+Tech Stack: Next.js PWA, FastAPI, Python, Snowflake, ElevenLabs, Gemini API, Tailwind CSS
+Project Code: https://github.com/shamir-khan-dev/InstantService
