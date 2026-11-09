@@ -72,7 +72,7 @@ export function HomeScreen({ flow, onTabChange }: HomeScreenProps) {
   const helperText = useMemo(() => {
     if (trimmedLength === 0) return "Add a few details so Dispatch AI can route this correctly.";
     if (messageTooShort) {
-      return `A little more detail helps — ${MIN_MESSAGE_LENGTH - trimmedLength} more character${
+      return `A little more detail helps : ${MIN_MESSAGE_LENGTH - trimmedLength} more character${
         MIN_MESSAGE_LENGTH - trimmedLength === 1 ? "" : "s"
       } recommended.`;
     }
@@ -85,14 +85,14 @@ export function HomeScreen({ flow, onTabChange }: HomeScreenProps) {
         ? "Please describe the issue with at least a short sentence."
         : "Please add a city or area so we can match local contractors."
       : state.step === "analyzing_failed"
-        ? state.error || "We couldn't analyze the request. Please try again."
+        ? state.error || "We could not analyze the request. Please try again."
         : null;
 
   function handleQuickChip(chip: string) {
     setMessage((prev) => {
       if (!prev.trim()) return chip;
       if (prev.toLowerCase().includes(chip.toLowerCase())) return prev;
-      return `${prev.trim()} — ${chip}`;
+      return `${prev.trim()} : ${chip}`;
     });
     setShowError(false);
   }
@@ -197,16 +197,20 @@ export function HomeScreen({ flow, onTabChange }: HomeScreenProps) {
       {/* z-0: Map */}
       <LeafletMap coords={coords} />
 
-      {/* z-10: Logo watermark */}
-      <div className="pointer-events-none fixed inset-x-0 top-0 z-10 flex justify-center pt-safe-top px-4" style={{ paddingTop: "max(env(safe-area-inset-top, 0px), 16px)" }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/MainLogo.png"
-          alt="InstantService"
-          draggable={false}
-          className="h-9 w-auto select-none rounded-full bg-white/80 px-4 py-1.5 shadow-sm backdrop-blur-sm"
-          style={{ boxShadow: "0 1px 2px rgba(15,23,42,0.06), 0 1px 1px rgba(15,23,42,0.04)" }}
-        />
+      {/* z-10: Tactical Dispatch Telemetry Header */}
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-20 flex flex-col items-center pt-safe-top px-4 gap-2" style={{ paddingTop: "max(env(safe-area-inset-top, 0px), 14px)" }}>
+        <div className="pointer-events-auto flex items-center gap-3 bg-slate-950/90 border border-amber-500/30 px-3.5 py-1.5 rounded-full shadow-lg backdrop-blur-md">
+          <span className="flex h-2 w-2 relative">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+          </span>
+          <span className="font-mono text-[10px] tracking-widest text-amber-400 font-bold uppercase">
+            RAPID DISPATCH READY : METRO SECTOR 01
+          </span>
+          <span className="text-[10px] bg-amber-500/10 text-amber-300 font-mono px-2 py-0.5 rounded border border-amber-500/20">
+            ETA 8 MIN
+          </span>
+        </div>
       </div>
 
       {/* z-30: Floating search bar */}
@@ -215,19 +219,19 @@ export function HomeScreen({ flow, onTabChange }: HomeScreenProps) {
         style={{ bottom: "calc(4rem + env(safe-area-inset-bottom, 0px) + 12px)" }}
       >
         <div
-          className="mx-auto flex max-w-md items-center gap-2 rounded-2xl px-4"
+          className="mx-auto flex max-w-md items-center gap-2 rounded-2xl px-4 py-1 border border-amber-500/20"
           style={{
-            background: "radial-gradient(ellipse 120% 160% at 50% -30%, rgba(30,58,138,0.11) 0%, transparent 70%), #ffffff",
-            boxShadow: "var(--shadow-md)",
+            background: "#ffffff",
+            boxShadow: "0 10px 25px -5px rgba(15, 23, 42, 0.15), 0 8px 10px -6px rgba(15, 23, 42, 0.1)",
           }}
         >
-          <Search aria-hidden className="size-5 shrink-0 text-muted" strokeWidth={1.75} />
+          <Search aria-hidden className="size-5 shrink-0 text-amber-600" strokeWidth={2} />
           <button
             type="button"
-            className="flex-1 py-3.5 text-left text-base text-muted focus:outline-none"
+            className="flex-1 py-3 text-left text-sm font-medium text-slate-700 focus:outline-none"
             onClick={() => setSheetOpen(true)}
           >
-            {message || "What do you need help with?"}
+            {message || "Describe emergency repair or dispatch need..."}
           </button>
           <button
             type="button"
@@ -235,8 +239,8 @@ export function HomeScreen({ flow, onTabChange }: HomeScreenProps) {
             onClick={toggleVoice}
             className={`flex size-9 items-center justify-center rounded-full transition-colors ${
               isListening
-                ? "bg-primary text-white mic-listening"
-                : "bg-slate-100 text-subtext"
+                ? "bg-amber-500 text-slate-950 mic-listening font-bold"
+                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
             }`}
           >
             <Mic aria-hidden className="size-5" strokeWidth={1.75} />

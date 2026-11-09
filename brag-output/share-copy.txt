@@ -10,3 +10,4 @@ Key Architecture Capabilities:
 
 Tech Stack: Next.js PWA, FastAPI, Python, Snowflake, ElevenLabs, Gemini API, Tailwind CSS
 Project Code: https://github.com/shamir-khan-dev/InstantService
+
